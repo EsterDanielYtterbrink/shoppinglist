@@ -1,0 +1,11 @@
+version: '3'
+services:
+  website:
+    container_name: php72
+    image: ed:php_img
+    build:
+      context: ./
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - 8000:80
