@@ -1,2 +1,2 @@
-FROM php:7.3-apache
+FROM pensiero/apache-php-mysql
 EXPOSE 80

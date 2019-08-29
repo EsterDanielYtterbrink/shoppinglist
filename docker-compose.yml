@@ -1,11 +1,22 @@
 version: '3'
 services:
-  website:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: shoppinglists
+  web:
     container_name: php72
     image: ed:php_img
     build:
       context: ./
     volumes:
-      - ./src:/var/www/html/
+      - ./src:/var/www/public/
     ports:
       - 8000:80
+    depends_on:
+      - db
